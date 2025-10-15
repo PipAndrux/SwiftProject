@@ -16,16 +16,30 @@ struct ContentView: View {
             Spacer()
             }.padding(.top, 20)
         
+
+
         TabView{
+            Tab("Home",systemImage: "house"){
+                HomeView()
+            }
+
             Tab("Map",systemImage: "map"){
                 MapView()
+            }
+
+            Tab("Explore",systemImage: "globe"){
+                ExploreView()
             }
             Tab("Profile",systemImage: "person"){
                 ProfileView()
             }
-            Tab("Settings",systemImage: "gearshape"){
-                SettingsView()
-            }
+        }
+    }
+        
+   struct HomeView: View {
+        var body: some View {
+            Text("Contenuto della Home")
+                .font(.largeTitle)
         }
     }
     
@@ -36,21 +50,21 @@ struct ContentView: View {
         }
     }
       
-    struct ProfileView: View {
-        var body: some View {
-            Text("Contenuto del Profilo")
-                .font(.largeTitle)
-        }
-    }
+
     
-    struct SettingsView: View {
+    struct ExploreView: View {
         var body: some View {
             Text("Contenuto delle impostazioni")
                 .font(.largeTitle)
         }
     }
     
-
+    struct ProfileView: View {
+        var body: some View {
+            Text("Contenuto del Profilo")
+                .font(.largeTitle)
+        }
+    }
 
   
 }
