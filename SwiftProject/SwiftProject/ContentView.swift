@@ -84,7 +84,7 @@ struct ContentView: View {
                     .cornerRadius(12)
 
                     
-                }
+                } 
             .frame(alignment: .leading)
                 
             //}
