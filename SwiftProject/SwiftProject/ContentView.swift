@@ -72,21 +72,22 @@ struct ContentView: View {
     struct ProfileHeaderView: View{
         let mariaProfile = UserInfo(title: "Maria", imageName: "person.crop.circle", isNew: false)
         var body: some View {
-            GeometryReader{geometry in
-                VStack{
+            //GeometryReader{geometry in
+            VStack{
                     HStack{
                         Image(systemName: mariaProfile.imageName)
                         Text(mariaProfile.title)
                     }
                     .padding(20)
-                    .frame(width: geometry.size.width * 0.8)
+                    //.frame(width: geometry.size.width * 0.8)
                     .background(Color(.systemGray6))
                     .cornerRadius(12)
 
                     
                 }
+            .frame(alignment: .leading)
                 
-            }
+            //}
 
             
         }
