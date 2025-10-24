@@ -1,18 +1,13 @@
 import SwiftUI
 
-struct Excursion: Identifiable{
-    let id = UUID()
-    let title: String
-    let location: String
-    let img: String
-}
+
 
 struct CardView: View {
     let excursion: Excursion
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image(systemName: excursion.img)
+            Image(excursion.img)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 280, height: 180)
@@ -31,7 +26,7 @@ struct CardView: View {
                     .font(.system(size: 18))
             }
             .foregroundColor(.white)
-            .padding()
+            .padding() 
         }
         .frame(width: 280, height: 180)
         .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -66,6 +61,32 @@ struct FeaturedCarouselView: View {
     }
 }
 
+struct PopularCarouselView: View {
+    let popularDestinations: [Excursion] = [
+        Excursion(title: "Escursione al Monte Rosa", location: "Valle d'Aosta, Italia", img: "Montagna"),
+        Excursion(title: "Trekking nella Foresta Amazzonica", location: "Manaus, Brasile", img: "foresta_amazzonica_trekking"),
+        Excursion(title: "Visita alle Rovine di Machu Picchu", location: "Cusco, Perù", img: "machu_picchu_rovine"),
+        Excursion(title: "Safari nel Serengeti", location: "Tanzania, Africa", img: "serengeti_safari_alba")
+    ]
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Escursioni popolari")
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.horizontal, 20)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    ForEach(popularDestinations) { excursion in
+                        CardView(excursion: excursion)
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 5)
+            }
+        }
+    }
+}
 
 struct HomeView: View {
     var body: some View {
@@ -76,29 +97,24 @@ struct HomeView: View {
                     Text("Lissone, MB")
                         .font(.footnote)
                         .foregroundColor(.secondary)
+                        .padding(.horizontal, 20)
                     
-                    Text("Where do")
+                    Text("Where do we go today?")
                         .font(.system(size: 40, weight: .bold))
-                    Text("we go today?")
-                        .font(.system(size: 40, weight: .bold))
+                        .padding(.horizontal, 20)
                     
                    
                     FeaturedCarouselView()
                         .padding(.top, 20)
                     
-                    Text("Altre categorie")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.top, 30)
+                 
                     
-                    // altri caroselli
+                    PopularCarouselView()
+                        .padding(.top, 20)
                         
                     Spacer()
                     
                 }
-                .padding(.horizontal, 20)
-                .padding(.top, 10)
-                
             }
             .navigationBarHidden(true) 
         }
