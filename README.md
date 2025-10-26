@@ -1,12 +1,12 @@
 
 
-# Placeholder Name
+# VibeTrip
 
 A social and local discovery application that allows users to find activities, points of interest, and restaurants based on the city they search for, and to share their adventures with a community.
 
 ## Description
 
-The "" project is designed to transform city exploration into a **shared and personalized experience**.
+The "VibeTrip" project is designed to transform city exploration into a **shared and personalized experience**.
 
 The application allows users to:
 * **Search and discover** things to do around a specific city (places to visit, restaurants, activities).
