@@ -1,4 +1,5 @@
 import SwiftUI
+import Foundation
 
 struct Excursion: Identifiable{
     let id = UUID()
