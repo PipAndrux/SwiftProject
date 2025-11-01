@@ -9,13 +9,18 @@ struct GuestProfileHeaderView: View {
                 Image(systemName: guestProfile.imageName)
                     .font(.system(size: 60))
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 12) {
                     Text(guestProfile.title)
                         .font(.system(size: 30))
                     
-                    Text("Log in or sign up")
-                        .font(.system(size: 20))
-                        .foregroundColor(.secondary)
+                    HStack(spacing: 10) {
+                        NavigationLink("Log In", destination: LoginView())
+                            .buttonStyle(.bordered)
+                            .tint(.secondary)
+                        
+                        NavigationLink("Sign Up", destination: RegistrationView())
+                            .buttonStyle(.borderedProminent)
+                    }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -26,7 +31,6 @@ struct GuestProfileHeaderView: View {
         .padding(.horizontal, 30)
     }
 }
-
 #Preview{
     GuestProfileHeaderView()
 }

@@ -11,10 +11,7 @@ struct SettingsProfileView: View {
     
     let userSetting = SettingItem(title: "Account settings", iconName: "person.crop.circle")
     let logoutSetting = SettingItem(title: "Log out", iconName: "arrow.right.square")
-    
-    let loginSetting = SettingItem(title: "Log in", iconName: "arrow.left.square")
-    let registerSetting = SettingItem(title: "Sign Up", iconName: "person.badge.plus")
-    
+
     var body: some View {
         Form {
             Section {
@@ -41,16 +38,6 @@ struct SettingsProfileView: View {
                         SettingRow(item: logoutSetting, color: .red)
                     }
                     .listRowSeparator(.hidden)
-                } else {
-                    NavigationLink(destination: LoginView()) {
-                        SettingRow(item: loginSetting, color: .blue)
-                    }
-                    .listRowSeparator(.hidden)
-                    
-                    NavigationLink(destination: RegistrationView()) {
-                        SettingRow(item: registerSetting, color: .green)
-                    }
-                    .listRowSeparator(.hidden)
                 }
             }
         }
@@ -72,4 +59,8 @@ struct SettingRow: View {
         }
         .foregroundColor(color)
     }
+}
+
+#Preview{
+    SettingsProfileView(isLogged: true)
 }
