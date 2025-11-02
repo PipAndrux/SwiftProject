@@ -10,16 +10,16 @@ struct LoginView: View {
             
             Spacer()
             
-            Image(systemName: "mountain.2.fill")
-                .font(.system(size: 80))
-                .foregroundColor(.accentColor)
-                .padding(.bottom, 30)
+            Image("Logo")
+                .resizable()
+                .scaledToFit()
+                .padding(.bottom, 20)
             
             Text("Welcome Back!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
-            Text("Log in to continue planning.")
+            Text("Log in to continue exploring.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .padding(.bottom, 20)

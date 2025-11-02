@@ -11,19 +11,21 @@ struct RegistrationView: View {
         case password, confirmPassword
     }
 
-    private var passwordError: String? {
-        guard !userInfo.password.isEmpty && !confirmPassword.isEmpty else {
-            return nil
-        }
-        
-        if userInfo.password != confirmPassword {
-            return "Passwords do not match."
-        }
+    private var passwordLengthError: String? {
+        guard !userInfo.password.isEmpty else { return nil }
         
         if userInfo.password.count < 8 {
             return "Password must be at least 8 characters long."
         }
+        return nil
+    }
+    
+    private var passwordMismatchError: String? {
+        guard !confirmPassword.isEmpty else { return nil }
         
+        if userInfo.password != confirmPassword {
+            return "Passwords do not match."
+        }
         return nil
     }
 
@@ -31,7 +33,8 @@ struct RegistrationView: View {
         return userInfo.username.isEmpty ||
                userInfo.password.isEmpty ||
                confirmPassword.isEmpty ||
-               passwordError != nil
+               passwordLengthError != nil ||
+               passwordMismatchError != nil
     }
     
     var body: some View {
@@ -40,10 +43,10 @@ struct RegistrationView: View {
                 
                 Spacer()
                 
-                Image(systemName: "person.crop.circle.badge.plus")
-                    .font(.system(size: 60))
-                    .foregroundColor(.accentColor)
-                    .padding(.bottom, 10)
+                Image("Logo")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.bottom, 20)
                 
                 Text("Create Account")
                     .font(.largeTitle)
@@ -66,9 +69,18 @@ struct RegistrationView: View {
                     textValue: $userInfo.password,
                     isMandatory: true,
                     isSecret: true,
-                    textHint: "Password"
+                    textHint: "Password",
+                    isError: passwordLengthError != nil
                 )
                 .focused($focusedField, equals: .password)
+                
+                if let passwordLengthError = passwordLengthError {
+                    Text(passwordLengthError)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 10)
+                }
                 
                 MyTextField(
                     withIcon: "lock.shield.fill",
@@ -76,12 +88,12 @@ struct RegistrationView: View {
                     isMandatory: true,
                     isSecret: true,
                     textHint: "Confirm Password",
-                    isError: passwordError != nil
+                    isError: passwordMismatchError != nil
                 )
                 .focused($focusedField, equals: .confirmPassword)
                 
-                if let passwordError = passwordError {
-                    Text(passwordError)
+                if let passwordMismatchError = passwordMismatchError {
+                    Text(passwordMismatchError)
                         .foregroundColor(.red)
                         .font(.caption)
                         .frame(maxWidth: .infinity, alignment: .leading)

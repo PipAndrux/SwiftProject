@@ -6,7 +6,7 @@ struct ExploreView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
                 
-                Text("Don't know what to do?\nLet's get into it")
+                Text("Don't know what to do?")
                     .font(.system(size: 40, weight: .bold))
                     .padding(.horizontal, 20)
                 

@@ -33,7 +33,6 @@ struct SettingsProfileView: View {
             Section {
                 if isLogged {
                     Button(action: {
-                        // TODO: Logout logic
                     }) {
                         SettingRow(item: logoutSetting, color: .red)
                     }
